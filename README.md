@@ -10,7 +10,7 @@ A per-user `launchd` agent reminds you to leave the desk and move on an interval
 
 - ⏰ **Interval reminders** via `launchd` (default every 30 min); survives reboots.
 - 😴 **Smart skip**: idle ≥ 15 min (you're away) → skips silently.
-- 🏋️ **No-equipment exercises with animated demos**: 325 body-weight moves by body part (from [exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)), shown as a browser card with an animation GIF + step-by-step instructions. Falls back to lightweight text cards (`moves.txt`).
+- 🏋️ **No-equipment exercises with animated demos**: 325 body-weight moves by body part (from [exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)). Click the **See demo** button on the reminder to open a browser card with an animation GIF + step-by-step instructions. Falls back to lightweight text cards (`moves.txt`).
 - 🎯 **Body-part focus**: pick the parts you want to work (core / legs / back / chest / arms / shoulders / cardio); they get priority — with anti-repetition so it never gets monotonous.
 - 🎭 **Copy personas**: hype / funny / savage, picked at random (editable in `phrases.txt`).
 - 💼 **Industry-flavored copy**: tell it your role (dev, design, PM, marketing, …) for reminders that speak your language.

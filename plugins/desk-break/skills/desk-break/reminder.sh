@@ -74,6 +74,7 @@ STR_COUNT_FMT="#{n} today"
 STR_ESC_FMT="⚠️ Ignored {n}x in a row! "
 STR_MOVE_PREFIX="👉 "
 STR_SEE_DEMO="↗ see the demo"
+STR_SEE_DEMO_BTN="See demo"
 STR_CARD_STEPS="Steps"
 STR_CARD_PART="Body part"
 STR_NIGHT_TITLE="🌙 Time to rest"
@@ -132,6 +133,19 @@ idle_now() { local n; n=$(ioreg -c IOHIDSystem 2>/dev/null | awk '/HIDIdleTime/ 
 tpl() { local s="$1"; shift; while [ $# -ge 2 ]; do s="${s//\{$1\}/$2}"; shift 2; done; printf '%s' "$s"; }
 
 dialog_box() { osascript -e 'on run {m, t, b, g}' -e 'display dialog m with title t buttons {b} default button b giving up after (g as integer)' -e 'end run' "$1" "$2" "$3" "$4" >/dev/null 2>&1; }
+# two-button dialog: an ack button + a "see demo" button that opens the media card on click
+dialog_with_demo() { # $1=msg $2=title $3=ack $4=demo $5=giveup
+  local r
+  r=$(osascript \
+    -e 'on run {m, t, a, d, g}' \
+    -e 'set x to display dialog m with title t buttons {a, d} default button d giving up after (g as integer)' \
+    -e 'if gave up of x then return "GU"' \
+    -e 'if (button returned of x) is d then return "DEMO"' \
+    -e 'return "OK"' \
+    -e 'end run' "$1" "$2" "$3" "$4" "$5" 2>/dev/null)
+  [ "$r" = "DEMO" ] && media_card
+  return 0
+}
 notify_box() { osascript -e 'on run {m, t, s}' -e 'display notification m with title t sound name s' -e 'end run' "$1" "$2" "${3:-Ping}" >/dev/null 2>&1; }
 
 pick_line() { # $1=file $2=filter-ERE (falls back to all)
@@ -388,7 +402,6 @@ if [ -n "$phrase" ]; then
 else
   body="$MESSAGE"; [ -n "$move" ] && body="${MESSAGE}"$'\n'"${STR_MOVE_PREFIX}${move}"
 fi
-[ "$have_media" = 1 ] && [ "$night" != 1 ] && body="${body}"$'\n'"${STR_SEE_DEMO}"
 
 # ---- night override ----
 if [ "$night" = 1 ]; then
@@ -418,14 +431,21 @@ music_on=0
 if [ "$ENABLE_MUSIC" = 1 ] && [ -x "$MC" ]; then "$MC" mood "$MOOD" >> "$LOG" 2>&1 & music_on=1; fi
 
 # ---- reminders ----
-[ "$have_media" = 1 ] && [ "$night" != 1 ] && media_card
 SAY_PID=""
 case "$REMINDER_STYLE" in *notification*) notify_box "$final_msg" "$TITLE" "Ping" ;; esac
 case "$REMINDER_STYLE" in *say*) [ -n "$spoken" ] && { say "$spoken" >/dev/null 2>&1 & SAY_PID=$!; } ;; esac
 dialog_secs=$DIALOG_TIMEOUT
 [ "$music_on" = 1 ] && dialog_secs=$MUSIC_SECONDS
 if [ "$TRACK_STATS" = 1 ] && [ "$night" != 1 ] && [ "$DETECT_WINDOW" -gt "$dialog_secs" ]; then dialog_secs=$DETECT_WINDOW; fi
-case "$REMINDER_STYLE" in *dialog*) dialog_box "$final_msg" "$TITLE" "$BUTTON" "$dialog_secs" & ;; esac
+# The animated demo card opens only when the user clicks the "see demo" button.
+if [ "$have_media" = 1 ] && [ "$night" != 1 ]; then
+  case "$REMINDER_STYLE" in
+    *dialog*) dialog_with_demo "$final_msg" "$TITLE" "$BUTTON" "$STR_SEE_DEMO_BTN" "$dialog_secs" & ;;
+    *)        media_card ;;   # no dialog in style to host a button → open directly
+  esac
+else
+  case "$REMINDER_STYLE" in *dialog*) dialog_box "$final_msg" "$TITLE" "$BUTTON" "$dialog_secs" & ;; esac
+fi
 
 # ---- hold window: music + idle watch ----
 hold=0

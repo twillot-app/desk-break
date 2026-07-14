@@ -48,7 +48,7 @@ Compute `UID=$(id -u)` and `LABEL="com.$(id -un).desk-break"`.
    - **语言 / language** → `LOCALE`: `自动/auto`, `中文`→`zh`, `English`→`en`.
    - **周期 / interval (minutes)** → plist `StartInterval = minutes*60`. `20`, `30`, `45`, `60`, Other.
    - **提醒方式 / reminder style** → `REMINDER_STYLE`: `强制弹窗`→`dialog`, `通知横幅+提示音`→`notification`, `弹窗+语音`→`dialog+say`, `只语音`→`say`.
-   - **媒体演示 / animated demo** → `SHOW_MEDIA` (`1`/`0`). On = a browser card with an animation GIF + steps (needs network, opens a browser tab each fire); off = text-only cards.
+   - **媒体演示 / animated demo** → `SHOW_MEDIA` (`1`/`0`). On = the reminder gets a **See demo** button that opens a browser card with an animation GIF + steps when clicked (needs network); off = text-only cards.
    - **关注部位 / focus body parts** → `FOCUS_PARTS` (multi-select, comma-joined): `core`, `legs`, `back`, `chest`, `arms`, `shoulders`, `cardio` (empty = no focus).
    - **音乐 / music** → `MOOD` + `ENABLE_MUSIC`: `energetic`, `excited`, `happy`, `不放/none`→`ENABLE_MUSIC=0`. Overridden by `TIME_ADAPTIVE=1`.
    - **文案人格 / persona** → `PERSONA`: `随机/random`, `hype`, `funny`, `savage`, `固定文案/off`.
