@@ -57,7 +57,6 @@ COMPLETE_IDLE=90
 ESCALATE=1
 ESCALATE_AFTER=3
 # v0.4: media exercises, focus, industry
-SHOW_MEDIA=1
 MEDIA_BASE_URL="https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/"
 FOCUS_PARTS=""                # comma list: core,legs,back,chest,arms,shoulders,cardio
 FOCUS_WEIGHT=3
@@ -361,9 +360,11 @@ if [ "$TIME_ADAPTIVE" = 1 ]; then
 fi
 [ -n "$MOVE_CATEGORIES" ] && cat_filter=$(echo "$MOVE_CATEGORIES" | tr ',' '|')
 
-# ---- choose exercise (dataset+media) or fall back to a text move card ----
+# ---- choose exercise: dataset (with a see-demo button) or text move card ----
+# The demo card only loads when the user clicks the button, so there's no
+# separate media toggle — SHOW_MOVE decides whether an exercise is offered.
 move=""; have_media=0
-if [ "$SHOW_MEDIA" = 1 ] && [ "$night" != 1 ] && select_exercise; then
+if [ "$SHOW_MOVE" = 1 ] && [ "$night" != 1 ] && select_exercise; then
   move="$ex_name"; have_media=1
 fi
 if [ -z "$move" ] && [ "$SHOW_MOVE" = 1 ]; then
@@ -441,7 +442,7 @@ if [ "$TRACK_STATS" = 1 ] && [ "$night" != 1 ] && [ "$DETECT_WINDOW" -gt "$dialo
 if [ "$have_media" = 1 ] && [ "$night" != 1 ]; then
   case "$REMINDER_STYLE" in
     *dialog*) dialog_with_demo "$final_msg" "$TITLE" "$BUTTON" "$STR_SEE_DEMO_BTN" "$dialog_secs" & ;;
-    *)        media_card ;;   # no dialog in style to host a button → open directly
+    *)        : ;;   # no dialog to host the button → no demo card (stays click-gated)
   esac
 else
   case "$REMINDER_STYLE" in *dialog*) dialog_box "$final_msg" "$TITLE" "$BUTTON" "$dialog_secs" & ;; esac

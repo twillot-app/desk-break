@@ -84,7 +84,7 @@ cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
 ## 数据与媒体来源
 
 - **动作数据**(名称、部位、分步骤说明)是 **[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)**(MIT)的筛选子集,由 `tools/build-exercises.py` 生成。
-- **演示动图/图片版权归 [Gym visual](https://gymvisual.com/)**,**未**打包进本仓库 —— desk-break 仅在提醒时按 URL 引用,并在每张卡片上标注署名。其使用受 [Gym visual 使用条款](https://gymvisual.com/content/3-terms-and-conditions-of-use)约束;按 URL 引用不等于获得授权。设 `SHOW_MEDIA=0` 可用纯文字卡片、不发任何外部请求。详见 [`DATA_NOTICE.md`](./plugins/desk-break/skills/desk-break/DATA_NOTICE.md)。
+- **演示动图/图片版权归 [Gym visual](https://gymvisual.com/)**,**未**打包进本仓库 —— desk-break 仅按 URL 引用,每张卡片标注署名,且**只有你点「看示范」时才会加载**(否则不发任何请求)。其使用受 [Gym visual 使用条款](https://gymvisual.com/content/3-terms-and-conditions-of-use)约束;按 URL 引用不等于获得授权。详见 [`DATA_NOTICE.md`](./plugins/desk-break/skills/desk-break/DATA_NOTICE.md)。
 
 ## License
 

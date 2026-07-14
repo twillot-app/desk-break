@@ -18,5 +18,6 @@ The media is subject to **Gym visual's Terms & Conditions of Use**
 is not a license. If you want to bundle, cache, or otherwise use this media in
 your own project, review those terms and obtain your own license from Gym visual.
 
-To disable media entirely (text-only cards, no external requests), set
-`SHOW_MEDIA=0` in `~/.config/desk-break/config.env`.
+Nothing is fetched until you click the **See demo** button on a reminder, so a
+normal reminder makes no external request. To turn off exercises (and the demo
+button) entirely, set `SHOW_MOVE=0` in `~/.config/desk-break/config.env`.

@@ -84,7 +84,7 @@ Highlights: `LOCALE` (auto/en/zh), `REMINDER_STYLE`, `MOOD`, `PERSONA` (hype/fun
 ## Data & media credits
 
 - **Exercise data** (names, body parts, step-by-step instructions) is a filtered subset of **[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)** (MIT), reshaped by `tools/build-exercises.py`.
-- **Demo GIFs/images are © [Gym visual](https://gymvisual.com/)** and are **not redistributed** here — desk-break references them by URL at reminder time, with attribution on every card. They're subject to [Gym visual's Terms of Use](https://gymvisual.com/content/3-terms-and-conditions-of-use); referencing a URL is not a license. Set `SHOW_MEDIA=0` for text-only cards with no external requests. See [`DATA_NOTICE.md`](./plugins/desk-break/skills/desk-break/DATA_NOTICE.md).
+- **Demo GIFs/images are © [Gym visual](https://gymvisual.com/)** and are **not redistributed** here — desk-break references them by URL, with attribution on every card, and **only fetches one when you click See demo** (no request otherwise). They're subject to [Gym visual's Terms of Use](https://gymvisual.com/content/3-terms-and-conditions-of-use); referencing a URL is not a license. See [`DATA_NOTICE.md`](./plugins/desk-break/skills/desk-break/DATA_NOTICE.md).
 
 ## License
 
