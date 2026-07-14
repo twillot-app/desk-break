@@ -44,13 +44,16 @@ Compute `UID=$(id -u)` and `LABEL="com.$(id -un).desk-break"`.
 
 1. If `~/.config/desk-break/config.env` exists, read it first and pre-select from it.
 
-2. Gather knobs in **one `AskUserQuestion` call** (offer "Other" where noted):
-   - **语言 / language** → `LOCALE`. Options: `自动/auto`→`auto`, `中文`→`zh`, `English`→`en`.
+2. Gather knobs across **up to two `AskUserQuestion` calls** (max 4 questions each; offer "Other" where noted):
+   - **语言 / language** → `LOCALE`: `自动/auto`, `中文`→`zh`, `English`→`en`.
    - **周期 / interval (minutes)** → plist `StartInterval = minutes*60`. `20`, `30`, `45`, `60`, Other.
    - **提醒方式 / reminder style** → `REMINDER_STYLE`: `强制弹窗`→`dialog`, `通知横幅+提示音`→`notification`, `弹窗+语音`→`dialog+say`, `只语音`→`say`.
-   - **音乐 / music** → `MOOD` + `ENABLE_MUSIC`: `energetic`, `excited`, `happy`, `不放/none`→`ENABLE_MUSIC=0`. (Moods: happy sad excited focus relaxed energetic melancholic peaceful.) Overridden by `TIME_ADAPTIVE=1`.
+   - **媒体演示 / animated demo** → `SHOW_MEDIA` (`1`/`0`). On = a browser card with an animation GIF + steps (needs network, opens a browser tab each fire); off = text-only cards.
+   - **关注部位 / focus body parts** → `FOCUS_PARTS` (multi-select, comma-joined): `core`, `legs`, `back`, `chest`, `arms`, `shoulders`, `cardio` (empty = no focus).
+   - **音乐 / music** → `MOOD` + `ENABLE_MUSIC`: `energetic`, `excited`, `happy`, `不放/none`→`ENABLE_MUSIC=0`. Overridden by `TIME_ADAPTIVE=1`.
    - **文案人格 / persona** → `PERSONA`: `随机/random`, `hype`, `funny`, `savage`, `固定文案/off`.
-   - **动作卡 + 时段 + 打卡 / cards + adaptive + streak** → `SHOW_MOVE`, `TIME_ADAPTIVE`, `NIGHT_MODE`, `TRACK_STATS` (usually all `1`).
+   - **行业 / industry** → `INDUSTRY`: `dev`|`design`|`pm`|`marketing`|`writing`|`sales`|`finance`|`student`|`none`.
+   - **时段 + 打卡 / adaptive + streak** → `TIME_ADAPTIVE`, `NIGHT_MODE`, `TRACK_STATS` (usually all `1`).
 
 3. Write `~/.config/desk-break/config.env`. Set `LOCALE` and the chosen knobs. **Do not** hard-set `TITLE`/`MESSAGE`/`SPEAK_TEXT` unless the user wants custom copy — leaving them unset lets the localized `strings.env` drive text so language switching works. Full var list in **Config reference**.
 
@@ -101,9 +104,11 @@ Compute `UID=$(id -u)` and `LABEL="com.$(id -un).desk-break"`.
 
 - **i18n**: `LOCALE` (`auto`|`en`|`zh`; auto = macOS system locale). `REPORT_EMAIL` (maintainer for `/report`).
 - **Base**: `REMINDER_STYLE`, `ENABLE_MUSIC`, `MOOD`, `IDLE_LIMIT_SECONDS`, `MUSIC_SECONDS`, `DIALOG_TIMEOUT`. Optional copy overrides: `TITLE`, `MESSAGE` (used when `PERSONA=off`), `BUTTON`, `SPEAK_TEXT` — leave unset to use localized `strings.env`.
-- **Fun pack**: `SHOW_MOVE` + `MOVE_CATEGORIES` (e.g. `core,legs,cardio`; empty = all/time-based); `PERSONA` (`hype`|`funny`|`savage`|`random`|`off`); `TIME_ADAPTIVE` (overrides `MOOD` + category by time); `NIGHT_MODE` + `NIGHT_HOUR`; `TRACK_STATS` + `DETECT_WINDOW` + `COMPLETE_IDLE`; `ESCALATE` + `ESCALATE_AFTER`.
+- **Fun pack**: `SHOW_MOVE` + `MOVE_CATEGORIES` (text-card fallback categories); `PERSONA` (`hype`|`funny`|`savage`|`random`|`off`); `TIME_ADAPTIVE` (overrides `MOOD` + category by time); `NIGHT_MODE` + `NIGHT_HOUR`; `TRACK_STATS` + `DETECT_WINDOW` + `COMPLETE_IDLE`; `ESCALATE` + `ESCALATE_AFTER` (also drives the escalating roast tier).
+- **Exercises + media (v0.4)**: `SHOW_MEDIA` (1 = animated browser card, 0 = text-only); `MEDIA_BASE_URL` (raw base for GIFs); `FOCUS_PARTS` (comma list of groups); `FOCUS_WEIGHT` (priority multiplier, default 3); `FOCUS_COOLDOWN` (consecutive focus shows before rotating, default 2); `EXERCISE_RECENT_K` (avoid repeating the last K, default 12).
+- **Industry**: `INDUSTRY` (`dev`|`design`|`pm`|`marketing`|`writing`|`sales`|`finance`|`student`|`none`) — sometimes swaps in a role-flavored line.
 
-Exercise cards `moves.txt` (`category|move`) and copy `phrases.txt` (`persona|line`, `{move}` placeholder; personas `hype`/`funny`/`savage`) live per-language under `i18n/<lang>/`. Editing config/data applies on the next fire; interval changes need a plist regen + reload (re-run `setup`).
+Data files under `i18n/<lang>/`: `exercises.tsv` (`group⇥name⇥gif⇥image⇥steps`; no-equipment, MIT-derived), `phrases.txt` (`persona|line`), `industry.txt` (`industry|line`), `roast.txt` (`tier|line`), `moves.txt` (text fallback), `strings.env` (UI). Editing config/data applies on the next fire; interval changes need a plist regen + reload (re-run `setup`). Regenerate `exercises.tsv` with `tools/build-exercises.py`.
 
 ## status / test / stats / report
 
@@ -122,3 +127,4 @@ Exercise cards `moves.txt` (`category|move`) and copy `phrases.txt` (`persona|li
 - macOS only: `launchd`, `ioreg` (HIDIdleTime), `osascript`, `say`. Music needs `music-cli` (aka `mc`) on PATH; absent → reminders still fire, music skipped.
 - osascript uses `on run argv` so Chinese/emoji never garble.
 - Same skill content works in other agents via `AGENTS.md` and `.cursor/rules/` at the repo root.
+- **Media**: demo GIFs are **© Gym visual**, referenced by URL (not bundled/redistributed), shown with attribution; needs network at reminder time and opens a browser tab. `SHOW_MEDIA=0` disables it (text-only, no external requests). See `DATA_NOTICE.md`.

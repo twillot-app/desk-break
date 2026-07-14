@@ -10,8 +10,11 @@
 
 - ⏰ **定时提醒**:`launchd` 按周期触发(默认每 30 分钟),重启后依旧生效。
 - 😴 **智能跳过**:空闲 ≥ 15 分钟(你不在座位)自动跳过。
-- 🃏 **随机动作卡**:从 `moves.txt` 抽取(拉伸 / 核心 / 腿 / 有氧 / 懒人 / 护眼)。
+- 🏋️ **无器材动作 + 动图演示**:325 个自重动作按身体部位分类(来自 [exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)),弹出浏览器卡片显示动图 + 分步骤说明;无媒体时回退到轻量文字卡(`moves.txt`)。
+- 🎯 **关注部位**:自选想练的部位(核心 / 腿 / 背 / 胸 / 手臂 / 肩颈 / 有氧),优先推荐 —— 并做防重复,不会老是同一个。
 - 🎭 **文案人格**:hype 励志 / funny 搞笑 / savage 毒舌,随机切换(`phrases.txt` 可改)。
+- 💼 **行业针对性文案**:告诉它你的职业(开发、设计、产品、市场……),提醒更懂你。
+- 🌶️ **升级 roast**:连续跳过越多,吐槽越狠。
 - 🌤️ **时段自适应**:早上拉伸、下午有氧、晚上放松;深夜自动切「该睡了」提醒。
 - 🎵 **锻炼音乐**:通过 [music-cli](https://github.com/luongnv89/music-cli) 播放,运动窗口结束后自动停止。
 - 🔥 **连续打卡**:提醒后观察空闲判断你是否真起身,连续忽略会升级提醒。
@@ -78,6 +81,11 @@ cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
 - **仅 macOS + 本地**:依赖 launchd,无法在 claude.ai 网页版或 API 云端运行。
 - 弹窗文案通过 `osascript … on run argv` 传递,中文 / emoji 不会乱码。
 
+## 数据与媒体来源
+
+- **动作数据**(名称、部位、分步骤说明)是 **[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)**(MIT)的筛选子集,由 `tools/build-exercises.py` 生成。
+- **演示动图/图片版权归 [Gym visual](https://gymvisual.com/)**,**未**打包进本仓库 —— desk-break 仅在提醒时按 URL 引用,并在每张卡片上标注署名。其使用受 [Gym visual 使用条款](https://gymvisual.com/content/3-terms-and-conditions-of-use)约束;按 URL 引用不等于获得授权。设 `SHOW_MEDIA=0` 可用纯文字卡片、不发任何外部请求。详见 [`DATA_NOTICE.md`](./plugins/desk-break/skills/desk-break/DATA_NOTICE.md)。
+
 ## License
 
-[MIT](./LICENSE) © twillot
+[MIT](./LICENSE) © twillot —— 适用于 desk-break 自身代码。打包的动作**数据**为 MIT(见上方来源);演示**媒体**版权归 Gym visual,另行授权。

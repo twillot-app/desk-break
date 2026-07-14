@@ -1,0 +1,21 @@
+# 行业针对性文案  格式: 行业|文案   ({move} 会被替换成动作)
+# 行业: dev / design / pm / marketing / writing / sales / finance / student
+# config 里 INDUSTRY=<行业> 时,会有一定概率用这里的文案代替通用人格文案。
+dev|你的代码不会因为你起来两分钟就 build fail 🧑‍💻 去:{move}
+dev|编译还要等,不如先:{move}
+dev|那个 bug 明天还在,你的颈椎可等不了。{move}
+design|像素级对齐重要,你的脊柱对齐更重要 🎨 {move}
+design|先保存,离开画布喘口气:{move}
+design|配色可以再调,腰只有一条。起来:{move}
+pm|需求可以排期,健康不能进 backlog 📋 现在:{move}
+pm|开个 standup 也得站起来,先:{move}
+marketing|流量会来,腰不会自己好 📈 去:{move}
+marketing|与其蹭热点,不如蹭个运动:{move}
+writing|灵感来自走动,不是久坐 ✍️ 起来:{move}
+writing|卡文了?站起来往往就通了。{move}
+sales|签单靠状态,状态靠身体 🤝 先:{move}
+sales|电话站着也能打,顺便:{move}
+finance|久坐是负资产,运动是复利 💹 立刻:{move}
+finance|对完账,也给身体结个账:{move}
+student|学得再猛也得护住颈椎 📚 去:{move}
+student|背书前先活动,记得更牢。{move}

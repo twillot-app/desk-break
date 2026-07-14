@@ -10,8 +10,11 @@ A per-user `launchd` agent reminds you to leave the desk and move on an interval
 
 - ⏰ **Interval reminders** via `launchd` (default every 30 min); survives reboots.
 - 😴 **Smart skip**: idle ≥ 15 min (you're away) → skips silently.
-- 🃏 **Random exercise cards** from `moves.txt` (stretch / core / legs / cardio / lazy / eyes).
+- 🏋️ **No-equipment exercises with animated demos**: 325 body-weight moves by body part (from [exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)), shown as a browser card with an animation GIF + step-by-step instructions. Falls back to lightweight text cards (`moves.txt`).
+- 🎯 **Body-part focus**: pick the parts you want to work (core / legs / back / chest / arms / shoulders / cardio); they get priority — with anti-repetition so it never gets monotonous.
 - 🎭 **Copy personas**: hype / funny / savage, picked at random (editable in `phrases.txt`).
+- 💼 **Industry-flavored copy**: tell it your role (dev, design, PM, marketing, …) for reminders that speak your language.
+- 🌶️ **Escalating roast**: skip too many in a row and the nudges get progressively more savage.
 - 🌤️ **Time-adaptive**: stretch in the morning, cardio in the afternoon, wind-down in the evening; a **night mode** switches to a "go to sleep" nudge.
 - 🎵 **Workout music** via [music-cli](https://github.com/luongnv89/music-cli), auto-stopped after the exercise window.
 - 🔥 **Streak tracking** with completion detection (watches idle after the reminder); escalates after repeated ignores.
@@ -78,6 +81,11 @@ Highlights: `LOCALE` (auto/en/zh), `REMINDER_STYLE`, `MOOD`, `PERSONA` (hype/fun
 - **macOS + local only** — it depends on `launchd`, so it can't run in claude.ai web or the API cloud sandbox.
 - Dialog text is passed via `osascript … on run argv`, so Chinese and emoji never garble.
 
+## Data & media credits
+
+- **Exercise data** (names, body parts, step-by-step instructions) is a filtered subset of **[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)** (MIT), reshaped by `tools/build-exercises.py`.
+- **Demo GIFs/images are © [Gym visual](https://gymvisual.com/)** and are **not redistributed** here — desk-break references them by URL at reminder time, with attribution on every card. They're subject to [Gym visual's Terms of Use](https://gymvisual.com/content/3-terms-and-conditions-of-use); referencing a URL is not a license. Set `SHOW_MEDIA=0` for text-only cards with no external requests. See [`DATA_NOTICE.md`](./plugins/desk-break/skills/desk-break/DATA_NOTICE.md).
+
 ## License
 
-[MIT](./LICENSE) © twillot
+[MIT](./LICENSE) © twillot — applies to desk-break's own code. Bundled exercise **data** is MIT (see credits); demo **media** is © Gym visual and separately licensed.

@@ -1,0 +1,8 @@
+# Escalating roast  format: tier|line   ({move} is replaced by the move)
+# tier 1 mild / 2 harsher / 3 brutal; the more you ignore in a row, the higher the tier.
+1|Where's that workout you promised? Up you get: {move}
+1|Skipped again? Your back is quietly keeping score. {move}
+2|Reigning champion of sitting still 🏆 Right now: {move}
+2|You and the chair have officially fused. Peel off and: {move}
+3|Move now, or the ambulance stands up before you do. {move}
+3|Your gym card is crying, your spine is alarming — only you are missing. {move}

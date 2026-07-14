@@ -1,0 +1,21 @@
+# Industry-flavored copy  format: industry|line   ({move} is replaced by the move)
+# industries: dev / design / pm / marketing / writing / sales / finance / student
+# With INDUSTRY=<industry>, these are used some of the time instead of the generic persona line.
+dev|Your code won't break because you stood up for two minutes 🧑‍💻 Go: {move}
+dev|The build can wait; your spine can't. {move}
+dev|That bug will still be there tomorrow. First: {move}
+design|Pixel alignment matters; spine alignment matters more 🎨 {move}
+design|Save the file, step off the canvas, breathe: {move}
+design|You can retweak the palette; you get one back. Up: {move}
+pm|Requirements can be scheduled; health can't be backlogged 📋 Now: {move}
+pm|Even a standup means standing up. First: {move}
+marketing|The traffic will come; your back won't fix itself 📈 Go: {move}
+marketing|Chase a workout instead of a trend: {move}
+writing|Ideas come from moving, not sitting ✍️ Up: {move}
+writing|Stuck? Standing up usually unsticks it. {move}
+sales|Closing deals needs energy; energy needs a body 🤝 First: {move}
+sales|You can take that call standing. Meanwhile: {move}
+finance|Sitting is a liability; moving compounds 💹 Right now: {move}
+finance|Reconcile the books, then settle up with your body: {move}
+student|Study hard, but protect that neck 📚 Go: {move}
+student|Move before you memorize — it sticks better. {move}
