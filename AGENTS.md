@@ -47,7 +47,7 @@ It handles the questions, install, plist, and a verification test.
 ## Key config keys
 
 `LOCALE` (auto|en|zh), `REPORT_EMAIL`, `REMINDER_STYLE` (dialog/notification/say),
-`ENABLE_MUSIC`, `MOOD`, `IDLE_LIMIT_SECONDS`, `MUSIC_SECONDS`, `SHOW_MOVE`, `PERSONA`
+`ENABLE_MUSIC`, `MOOD`, `IDLE_LIMIT_SECONDS`, `MUSIC_SECONDS`, `FOCUS_PARTS`, `PERSONA`
 (hype|funny|savage|random|off), `TIME_ADAPTIVE`, `NIGHT_MODE`, `TRACK_STATS`,
 `DETECT_WINDOW`, `COMPLETE_IDLE`, `ESCALATE`. Full reference: `SKILL.md`.
 

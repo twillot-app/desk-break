@@ -45,7 +45,6 @@ REPORT_EMAIL="twillot@outlook.com"
 MOVES_FILE=""
 PHRASES_FILE=""
 # fun pack
-SHOW_MOVE=1
 MOVE_CATEGORIES=""
 PERSONA="random"              # hype | funny | savage | random | off
 TIME_ADAPTIVE=1
@@ -361,13 +360,13 @@ fi
 [ -n "$MOVE_CATEGORIES" ] && cat_filter=$(echo "$MOVE_CATEGORIES" | tr ',' '|')
 
 # ---- choose exercise: dataset (with a see-demo button) or text move card ----
-# The demo card only loads when the user clicks the button, so there's no
-# separate media toggle — SHOW_MOVE decides whether an exercise is offered.
+# An exercise is always offered; the demo card only loads when the user clicks
+# the See demo button.
 move=""; have_media=0
-if [ "$SHOW_MOVE" = 1 ] && [ "$night" != 1 ] && select_exercise; then
+if [ "$night" != 1 ] && select_exercise; then
   move="$ex_name"; have_media=1
 fi
-if [ -z "$move" ] && [ "$SHOW_MOVE" = 1 ]; then
+if [ -z "$move" ]; then
   mfilt=""; [ -n "$cat_filter" ] && mfilt="^(${cat_filter})\\|"
   msel=$(pick_line "$MOVES_FILE" "$mfilt") && move="${msel#*|}"
 fi
