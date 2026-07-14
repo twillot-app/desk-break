@@ -1,0 +1,18 @@
+# Copy personas  format: persona|line
+# personas: hype / funny / savage   ({move} is replaced by the random exercise card)
+# With PERSONA=random one is picked each time; you can also pin one, or set off to use MESSAGE.
+hype|Get up! Your body will thank you 🔥 Today: {move}
+hype|Every stand-up is a small win over sitting 💪 Go: {move}
+hype|A 3-minute investment for an afternoon of focus. Start: {move}
+hype|You're one stand-up away from feeling better ✨ {move}
+hype|Don't let the chair steal your health. Right now: {move}
+funny|Your chair says it needs some alone time 🪑 Go: {move}
+funny|Your sitting buff is fully stacked — time to dispel it 🧙 {move}
+funny|Glutes: offline. Legs: standing by. Mission: {move}
+funny|Even slacking off needs a healthy body. First: {move}
+funny|System detected "human welded to chair." Suggested fix: {move}
+savage|Welded to that chair again? Up you get: {move}
+savage|Sitting makes you... wider. Immediately: {move}
+savage|Your lower back just left a 1-star review 📟 Go: {move}
+savage|Keep sitting and that gym membership is pure charity. Now: {move}
+savage|Sitting this long — planning to take root? {move}

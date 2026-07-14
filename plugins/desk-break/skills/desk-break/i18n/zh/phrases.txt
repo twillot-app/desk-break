@@ -1,0 +1,18 @@
+# 文案人格库  格式: 人格|文案
+# 人格: hype 励志 / funny 搞笑 / savage 毒舌   ({move} 会被替换成随机动作卡)
+# config 里 PERSONA=random 时每次随机挑一个;也可固定为某一个,或设 off 用 MESSAGE。
+hype|起身!你的身体会感谢现在的你 🔥 今天:{move}
+hype|每一次起立都是对久坐的小胜利 💪 来:{move}
+hype|3 分钟投资,换一下午的清醒。开始:{move}
+hype|你离更好的状态,只差站起来这一下 ✨ {move}
+hype|别让椅子偷走你的健康。现在就:{move}
+funny|你的椅子说它想单独待会儿 🪑 去:{move}
+funny|久坐 buff 已叠满,该解除了 🧙 {move}
+funny|屁股:已阵亡。腿:待命。任务:{move}
+funny|摸鱼也得有个好身体嘛,先:{move}
+funny|系统检测到"人肉焊接椅子",建议:{move}
+savage|又焊在椅子上了?起来:{move}
+savage|久坐使人……变宽。立刻:{move}
+savage|你的腰刚发来一条差评 📟 去:{move}
+savage|再不动,健身卡就白办了。现在:{move}
+savage|坐这么久,是打算生根发芽吗?{move}

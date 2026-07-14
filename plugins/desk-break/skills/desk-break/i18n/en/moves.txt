@@ -1,0 +1,23 @@
+# Exercise cards  format: category|move
+# categories: stretch / core / legs / cardio / lazy / eyes
+# Add, remove, or edit lines freely; one is picked at random per reminder. Lines starting with # are ignored.
+stretch|Neck rolls: slowly trace a circle each way x5
+stretch|Reach both arms overhead, side-bend left & right, 15s each
+stretch|Standing forward fold, reach for your toes, hold 20s
+stretch|Chest opener: pull shoulders back and squeeze x10
+stretch|Wall angels: slide arms up and down against a wall x10
+core|Wall sit, 45s
+core|Plank, 30s
+core|Standing knee-to-elbow crunches, 12 each side
+legs|Bodyweight squats x15
+legs|High knees in place, 30s
+legs|Calf raises x20
+legs|Reverse lunges, 10 each side
+cardio|Jumping jacks, 30s
+cardio|Jog in place, 45s
+cardio|Burpees x8
+lazy|Get up for a glass of water and take a lap
+lazy|Stand up and gaze out the window for 30s
+lazy|Roll your neck and shoulders, just move a little
+eyes|Look at something 20 feet away for 20s (20-20-20 rule)
+eyes|Close your eyes and cup them with your palms for 20s

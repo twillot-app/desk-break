@@ -1,68 +1,80 @@
 # desk-break
 
-> A Claude Code skill for macOS: a recurring "get up and move" break reminder with random exercise cards, workout music, and streak tracking.
+> A macOS "get up and move" break reminder for AI coding agents — random exercise cards, workout music, and streak tracking. Works with **Claude Code**, **Codex**, **Cursor**, and more.
 
-一个 Claude Code 技能(macOS 专用):按周期提醒你**离开电脑桌面动一动**,弹出随机运动卡片、播放锻炼音乐,还能连续打卡、检测你是否真的起身。用 `/desk-break` 一条命令引导配置。
+**English** · [中文](./README.zh-CN.md)
 
-## 特性
+A per-user `launchd` agent reminds you to leave the desk and move on an interval. Each time it fires, it checks whether you're actually at the keyboard, then pops a reminder with a random exercise card, plays workout music, and tracks your streak — unless you've stepped away, in which case it stays quiet.
 
-- ⏰ **定时提醒**:launchd 定时触发(默认每 30 分钟),重启后依旧生效。
-- 😴 **智能跳过**:连续空闲 ≥ 15 分钟(你不在座位)自动跳过,不打扰。
-- 🃏 **随机动作卡**:从 `moves.txt` 随机抽一张(拉伸 / 核心 / 腿 / 有氧 / 懒人 / 护眼),直接告诉你做什么。
-- 🎭 **文案人格**:励志 / 搞笑 / 毒舌 三种语气随机切换(`phrases.txt`,可自定义)。
-- 🌤️ **时段自适应**:早上拉伸、下午有氧、晚上放松;深夜自动切「该睡了」提醒。
-- 🎵 **锻炼音乐**:通过 [music-cli](https://github.com/luongnv89/music-cli) 播放对应风格,运动窗口结束后自动停止。
-- 🔥 **连续打卡**:提醒后观察空闲判断你是否真起身,记录 streak;连续忽略会升级提醒。
-- 🗣️ **多种提醒方式**:强制弹窗 / 系统通知 / 语音朗读,可任意组合。
+## Features
 
-## 依赖
+- ⏰ **Interval reminders** via `launchd` (default every 30 min); survives reboots.
+- 😴 **Smart skip**: idle ≥ 15 min (you're away) → skips silently.
+- 🃏 **Random exercise cards** from `moves.txt` (stretch / core / legs / cardio / lazy / eyes).
+- 🎭 **Copy personas**: hype / funny / savage, picked at random (editable in `phrases.txt`).
+- 🌤️ **Time-adaptive**: stretch in the morning, cardio in the afternoon, wind-down in the evening; a **night mode** switches to a "go to sleep" nudge.
+- 🎵 **Workout music** via [music-cli](https://github.com/luongnv89/music-cli), auto-stopped after the exercise window.
+- 🔥 **Streak tracking** with completion detection (watches idle after the reminder); escalates after repeated ignores.
+- 🗣️ **Reminder styles**: forced dialog / notification / spoken — combine freely.
+- 🌐 **i18n**: English + 中文, auto-detected from your system locale.
 
-- **macOS**(用到 `launchd`、`ioreg`、`osascript`、`say`)。
-- **[Claude Code](https://claude.com/claude-code)**(技能宿主)。
-- **[music-cli](https://github.com/luongnv89/music-cli)**(可选;没装则跳过音乐,提醒照常)。
+## Requirements
 
-## 安装
+- **macOS** (uses `launchd`, `ioreg`, `osascript`, `say`).
+- An agent host — **[Claude Code](https://claude.com/claude-code)** (richest experience), or **Codex / Cursor / others** (see [Other agents](#other-agents)).
+- **[music-cli](https://github.com/luongnv89/music-cli)** (optional; without it, reminders still fire and music is skipped).
 
-把仓库直接克隆到 Claude Code 的技能目录:
+## Install
 
-```bash
-git clone git@github.com:twillot-app/desk-break.git ~/.claude/skills/desk-break
-```
-
-然后在 Claude Code 里运行引导配置:
+### Claude Code — plugin marketplace (recommended)
 
 ```
+/plugin marketplace add twillot-app/desk-break
+/plugin install desk-break@twillot
 /desk-break setup
 ```
 
-`setup` 会问你**周期 / 提醒方式 / 音乐风格 / 文案人格 / 动作卡 / 时段自适应**,写好配置并注册 launchd agent。
+`setup` walks you through language, interval, reminder style, music, persona, and the fun-pack toggles, then registers the launchd agent.
 
-> 手动安装:也可把 `SKILL.md`、`reminder.sh`、`moves.txt`、`phrases.txt` 放到 `~/.claude/skills/desk-break/`,由 `setup` 负责把运行脚本装到 `~/.local/bin/`、数据装到 `~/.config/desk-break/`、注册 plist。
+### Other agents
 
-## 常用命令
+The skill is plain shell + data, so any agent can drive it. See [`AGENTS.md`](./AGENTS.md) (read by Codex and others) and [`.cursor/rules/desk-break.mdc`](./.cursor/rules/desk-break.mdc) (Cursor). Quick manual install:
 
-| 命令 | 作用 |
+```bash
+install -m 0755 plugins/desk-break/skills/desk-break/reminder.sh ~/.local/bin/desk-break.sh
+mkdir -p ~/.config/desk-break/i18n
+cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
+# create ~/.config/desk-break/config.env and a launchd plist — see AGENTS.md / SKILL.md
+```
+
+## Commands
+
+| Command | What it does |
 |---|---|
-| `/desk-break setup` | 交互式配置 + 安装 |
-| `/desk-break status` | 查看运行状态、配置、最近日志 |
-| `/desk-break test` | 立即触发一次(~8 秒快速演示,不计入战绩) |
-| `/desk-break stats` | 查看连续打卡战绩 |
-| `/desk-break disable` | 停用(保留文件) |
-| `/desk-break uninstall` | 彻底移除 |
+| `/desk-break setup` | Interactive configuration + install |
+| `/desk-break status` | Status, config, recent log |
+| `/desk-break test` | Fire once now (~8s dry-run, no stats change) |
+| `/stats` | Streak, completion rate, and last-7-days chart |
+| `/report` | Open a pre-filled problem-report email to the maintainer |
+| `/desk-break disable` · `uninstall` | Stop / remove |
 
-## 配置
+Under the hood these map to `~/.local/bin/desk-break.sh [--test|--stats|--report "…"]`.
 
-所有偏好在 `~/.config/desk-break/config.env`,改完**下次触发即生效**(改周期需重跑 `setup` 重载 plist)。动作卡库 `moves.txt`、文案库 `phrases.txt` 也可自由增删。完整字段说明见 [`SKILL.md`](./SKILL.md) 的 *Config reference*。
+## Configuration
 
-## 工作原理
+Everything lives in `~/.config/desk-break/config.env` (applies on the next fire; interval changes need a re-run of `setup`). Exercise cards and copy are per-language under `~/.config/desk-break/i18n/<lang>/`. Full reference: [`SKILL.md`](./plugins/desk-break/skills/desk-break/SKILL.md).
 
-`setup` 生成一个 per-user launchd agent(`~/Library/LaunchAgents/com.<user>.desk-break.plist`),按 `StartInterval` 周期运行 `~/.local/bin/desk-break.sh`。脚本读取配置,检查空闲时间决定是否提醒,按需弹窗 / 朗读 / 放音乐,并把打卡数据写入 `~/.local/share/desk-break/stats.env`。
+Highlights: `LOCALE` (auto/en/zh), `REMINDER_STYLE`, `MOOD`, `PERSONA` (hype/funny/savage/random/off), `TIME_ADAPTIVE`, `NIGHT_MODE`, `TRACK_STATS`, `IDLE_LIMIT_SECONDS`, `MUSIC_SECONDS`, `REPORT_EMAIL`.
 
-## 说明
+## How it works
 
-- 仅支持在**本机运行的 Claude Code**;因为依赖 launchd 等本地能力,无法在 claude.ai 网页版或 API 云端运行。
-- 弹窗文案通过 `osascript ... on run argv` 传递,中文 / emoji 不会乱码。
+`setup` installs `~/.local/bin/desk-break.sh` and a launchd agent (`~/Library/LaunchAgents/com.<user>.desk-break.plist`) that runs it on `StartInterval`. The script resolves your locale, checks idle time, shows the reminder / plays music, and writes streak data to `~/.local/share/desk-break/`.
+
+## Notes
+
+- **macOS + local only** — it depends on `launchd`, so it can't run in claude.ai web or the API cloud sandbox.
+- Dialog text is passed via `osascript … on run argv`, so Chinese and emoji never garble.
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) © twillot

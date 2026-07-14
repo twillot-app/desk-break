@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "twillot",
+  "description": "twillot's Claude Code plugins.",
+  "owner": {
+    "name": "twillot",
+    "email": "twillot@outlook.com"
+  },
+  "plugins": [
+    {
+      "name": "desk-break",
+      "displayName": "Desk Break",
+      "source": "./plugins/desk-break",
+      "description": "macOS 'get up and move' break reminder: random exercise cards, workout music, persona/time-adaptive copy, night mode, and streak tracking. English + 中文.",
+      "category": "productivity",
+      "author": { "name": "twillot" },
+      "homepage": "https://github.com/twillot-app/desk-break"
+    }
+  ]
+}

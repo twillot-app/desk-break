@@ -1,0 +1,18 @@
+{
+  "name": "desk-break",
+  "version": "0.3.0",
+  "description": "macOS movement-break reminder with random exercise cards, workout music, streak tracking, and i18n (English + 中文). Runs as a launchd agent; managed via the /desk-break skill.",
+  "author": { "name": "twillot", "email": "twillot@outlook.com" },
+  "homepage": "https://github.com/twillot-app/desk-break",
+  "license": "MIT",
+  "keywords": [
+    "movement",
+    "break-reminder",
+    "health",
+    "posture",
+    "pomodoro",
+    "macos",
+    "launchd",
+    "productivity"
+  ]
+}
