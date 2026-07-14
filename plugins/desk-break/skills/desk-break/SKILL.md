@@ -18,12 +18,15 @@ Config-driven + i18n: preferences live in `~/.config/desk-break/config.env`; use
 
 ## Subcommands / commands
 
-- `/desk-break setup` — interactive (re)configuration, then install/reload. (Flow below.)
-- `/desk-break status` — installed/loaded?, current config, recent log.
-- `/desk-break test` — fire once now (fast ~8s dry-run; does not touch stats).
-- `/stats` — streak + last-7-days report (`~/.local/bin/desk-break.sh --stats`). Shipped as a plugin command.
-- `/report` — email a problem to the maintainer via a pre-filled draft (`--report`). Shipped as a plugin command.
-- `/desk-break disable` — unload but keep files. `enable` — reload. `uninstall` — remove everything.
+The skill is invocable as `/desk-break` (guided setup). Installed as a plugin, each operation is also a namespaced command (`commands/*.md`):
+
+- `/desk-break:setup` — interactive (re)configuration, then install/reload. (Flow below.)
+- `/desk-break:status` — installed/loaded?, current config, recent log.
+- `/desk-break:test` — fire once now (fast ~8s dry-run; does not touch stats).
+- `/desk-break:stats` — streak + last-7-days report (`--stats`).
+- `/desk-break:report` — email a problem to the maintainer via a pre-filled draft (`--report`).
+- `/desk-break:disable` / `/desk-break:enable` — unload / reload the agent (keeps files).
+- `/desk-break:uninstall` — remove agent + files.
 
 ## Paths
 

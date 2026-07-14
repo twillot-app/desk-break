@@ -49,16 +49,19 @@ cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
 
 ## Commands
 
+Once installed as a plugin, commands are namespaced under `desk-break:`.
+
 | Command | What it does |
 |---|---|
-| `/desk-break setup` | Interactive configuration + install |
-| `/desk-break status` | Status, config, recent log |
-| `/desk-break test` | Fire once now (~8s dry-run, no stats change) |
-| `/stats` | Streak, completion rate, and last-7-days chart |
-| `/report` | Open a pre-filled problem-report email to the maintainer |
-| `/desk-break disable` · `uninstall` | Stop / remove |
+| `/desk-break:setup` | Interactive configuration + install |
+| `/desk-break:status` | Loaded agent, current config, recent log |
+| `/desk-break:test` | Fire once now (~8s dry-run, no stats change) |
+| `/desk-break:stats` | Streak, completion rate, and last-7-days chart |
+| `/desk-break:report` | Open a pre-filled problem-report email to the maintainer |
+| `/desk-break:disable` · `/desk-break:enable` | Pause / resume the reminder |
+| `/desk-break:uninstall` | Remove the agent and files |
 
-Under the hood these map to `~/.local/bin/desk-break.sh [--test|--stats|--report "…"]`.
+The `desk-break` skill itself is also invocable as `/desk-break` for the guided setup. Under the hood the commands map to `~/.local/bin/desk-break.sh [--test|--stats|--report "…"]` and `launchctl`.
 
 ## Configuration
 

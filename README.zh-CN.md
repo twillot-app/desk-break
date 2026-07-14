@@ -49,16 +49,19 @@ cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
 
 ## 命令
 
+作为插件安装后,命令都在 `desk-break:` 命名空间下。
+
 | 命令 | 作用 |
 |---|---|
-| `/desk-break setup` | 交互式配置 + 安装 |
-| `/desk-break status` | 状态、配置、最近日志 |
-| `/desk-break test` | 立即触发一次(~8 秒演示,不计入战绩) |
-| `/stats` | 连续打卡、完成率、最近 7 天图表 |
-| `/report` | 打开预填好的问题反馈邮件给维护者 |
-| `/desk-break disable` · `uninstall` | 停用 / 移除 |
+| `/desk-break:setup` | 交互式配置 + 安装 |
+| `/desk-break:status` | 状态、配置、最近日志 |
+| `/desk-break:test` | 立即触发一次(~8 秒演示,不计入战绩) |
+| `/desk-break:stats` | 连续打卡、完成率、最近 7 天图表 |
+| `/desk-break:report` | 打开预填好的问题反馈邮件给维护者 |
+| `/desk-break:disable` · `/desk-break:enable` | 停用 / 恢复 |
+| `/desk-break:uninstall` | 移除定时任务和文件 |
 
-底层都对应 `~/.local/bin/desk-break.sh [--test|--stats|--report "…"]`。
+`desk-break` 技能本身也可用 `/desk-break` 调用(引导式配置)。底层对应 `~/.local/bin/desk-break.sh [--test|--stats|--report "…"]` 与 `launchctl`。
 
 ## 配置
 
