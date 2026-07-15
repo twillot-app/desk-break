@@ -60,7 +60,7 @@ MEDIA_BASE_URL="https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/
 FOCUS_PARTS=""                # comma list: core,legs,back,chest,arms,shoulders,cardio
 FOCUS_WEIGHT=3
 FOCUS_COOLDOWN=2
-EXERCISE_RECENT_K=12
+EXERCISE_RECENT_K=6
 INDUSTRY="none"               # dev|design|pm|marketing|writing|sales|finance|student|none
 # strings (english fallbacks; strings.env replaces per-locale)
 TITLE="🏃 Time to move"
