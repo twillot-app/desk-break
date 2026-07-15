@@ -81,6 +81,18 @@ cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
 - **仅 macOS + 本地**:依赖 launchd,无法在 claude.ai 网页版或 API 云端运行。
 - 弹窗文案通过 `osascript … on run argv` 传递,中文 / emoji 不会乱码。
 
+## 使用说明与文件位置
+
+📖 完整使用说明:**[USAGE.zh-CN.md](./USAGE.zh-CN.md)** —— 提醒长什么样、连续打卡怎么算、关注部位、配置速查、常见问题。
+
+所有数据都在本机(不上云):
+
+- **日志 / 状态** —— `~/.local/share/desk-break/`:`reminder.log`(触发/结果)、`stats.env`(打卡汇总)、`history.log`(每次结果,`/stats` 数据源)、`recent.log`(防重复)、`card.html`(上次动图卡)。
+- **配置 + 数据** —— `~/.config/desk-break/`:`config.env` 与 `i18n/<lang>/`(动作、人格、行业、roast、文字卡、界面文案)。
+- **程序 / 定时任务** —— `~/.local/bin/desk-break.sh`、`~/Library/LaunchAgents/com.<user>.desk-break.plist`。
+
+动图 / 图片**不存本地**,只有点「看示范」时才按 URL 加载。
+
 ## 数据与媒体来源
 
 - **动作数据**(名称、部位、分步骤说明)是 **[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)**(MIT)的筛选子集,由 `tools/build-exercises.py` 生成。

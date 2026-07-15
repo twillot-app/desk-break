@@ -81,6 +81,18 @@ Highlights: `LOCALE` (auto/en/zh), `REMINDER_STYLE`, `MOOD`, `PERSONA` (hype/fun
 - **macOS + local only** — it depends on `launchd`, so it can't run in claude.ai web or the API cloud sandbox.
 - Dialog text is passed via `osascript … on run argv`, so Chinese and emoji never garble.
 
+## Usage & files
+
+📖 Full day-to-day guide: **[USAGE.md](./USAGE.md)** — the reminder flow, how streaks work, focus, the config reference, and an FAQ.
+
+Everything is stored locally (nothing in the cloud):
+
+- **Logs / state** — `~/.local/share/desk-break/`: `reminder.log` (fires/results), `stats.env` (streak totals), `history.log` (per-result, powers `/stats`), `recent.log` (anti-repetition), `card.html` (last demo card).
+- **Config + data** — `~/.config/desk-break/`: `config.env` and `i18n/<lang>/` (exercises, personas, industry, roast, moves, UI strings).
+- **Program / agent** — `~/.local/bin/desk-break.sh`, `~/Library/LaunchAgents/com.<user>.desk-break.plist`.
+
+Demo GIFs are **not** stored locally — they load by URL only when you click **See demo**.
+
 ## Data & media credits
 
 - **Exercise data** (names, body parts, step-by-step instructions) is a filtered subset of **[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)** (MIT), reshaped by `tools/build-exercises.py`.
