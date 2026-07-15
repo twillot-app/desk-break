@@ -1,6 +1,6 @@
 {
   "name": "desk-break",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "macOS movement-break reminder: no-equipment exercises with animated demos by body part, body-part focus, workout music, streak tracking, persona/time-adaptive copy, escalating roast, night mode, and i18n (English + 中文). Installs a per-user launchd agent via `npx desk-break setup`.",
   "bin": {

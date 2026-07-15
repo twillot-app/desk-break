@@ -1,5 +1,10 @@
 # desk-break
 
+[![npm version](https://img.shields.io/npm/v/desk-break?logo=npm&color=cb3837)](https://www.npmjs.com/package/desk-break)
+[![node](https://img.shields.io/node/v/desk-break?logo=node.js&logoColor=white)](https://www.npmjs.com/package/desk-break)
+[![license: MIT](https://img.shields.io/npm/l/desk-break?color=blue)](./LICENSE)
+[![platform: macOS](https://img.shields.io/badge/platform-macOS-000000?logo=apple&logoColor=white)](#依赖)
+
 > macOS「起身活动一下」休息提醒,为 AI 编程 agent 打造 —— 随机运动卡片、锻炼音乐、连续打卡。支持 **Claude Code**、**Codex**、**Cursor** 等。
 
 [English](./README.md) · **中文**

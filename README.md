@@ -1,5 +1,10 @@
 # desk-break
 
+[![npm version](https://img.shields.io/npm/v/desk-break?logo=npm&color=cb3837)](https://www.npmjs.com/package/desk-break)
+[![node](https://img.shields.io/node/v/desk-break?logo=node.js&logoColor=white)](https://www.npmjs.com/package/desk-break)
+[![license: MIT](https://img.shields.io/npm/l/desk-break?color=blue)](./LICENSE)
+[![platform: macOS](https://img.shields.io/badge/platform-macOS-000000?logo=apple&logoColor=white)](#requirements)
+
 > A macOS "get up and move" break reminder for AI coding agents — random exercise cards, workout music, and streak tracking. Works with **Claude Code**, **Codex**, **Cursor**, and more.
 
 **English** · [中文](./README.zh-CN.md)
