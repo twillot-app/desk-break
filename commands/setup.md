@@ -14,4 +14,4 @@ write `~/.config/desk-break/config.env`, install the runner and i18n data, regis
 the launchd agent, then verify with a quick `--test`.
 
 If the skill isn't available in this agent, follow the setup steps in
-`plugins/desk-break/skills/desk-break/SKILL.md` directly.
+`skills/health/desk-break/SKILL.md` directly.

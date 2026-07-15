@@ -2,7 +2,7 @@
 
 Guidance for coding agents (OpenAI Codex CLI, Cursor, and others) working with this
 repo. Claude Code additionally reads the richer skill at
-`plugins/desk-break/skills/desk-break/SKILL.md` — prefer that when running under Claude Code.
+`skills/health/desk-break/SKILL.md` — prefer that when running under Claude Code.
 
 ## What this is
 
@@ -14,19 +14,28 @@ Everything is local shell — there is no service to deploy. English + 中文 (i
 
 ## Core file (single source of truth)
 
-`plugins/desk-break/skills/desk-break/reminder.sh` — the runner. Do not duplicate its
+`skills/health/desk-break/reminder.sh` — the runner. Do not duplicate its
 logic; other entry points just call it. It reads:
 - `~/.config/desk-break/config.env` — settings
 - `~/.config/desk-break/i18n/<lang>/{moves.txt,phrases.txt,strings.env}` — localized data
 
-## Install (manual, any agent)
+## Install
+
+Easiest (any agent, no repo checkout) — the published npm CLI does the whole flow:
+
+```bash
+npx desk-break setup           # copy runner + i18n, write config, register launchd, test
+npx desk-break setup --interval 45 --dry-run   # preview without touching anything
+```
+
+Manual (from a repo checkout):
 
 ```bash
 # 1. runner
-install -m 0755 plugins/desk-break/skills/desk-break/reminder.sh ~/.local/bin/desk-break.sh
+install -m 0755 skills/health/desk-break/reminder.sh ~/.local/bin/desk-break.sh
 # 2. localized data (don't overwrite user edits)
 mkdir -p ~/.config/desk-break/i18n
-cp -Rn plugins/desk-break/skills/desk-break/i18n/. ~/.config/desk-break/i18n/
+cp -Rn skills/health/desk-break/i18n/. ~/.config/desk-break/i18n/
 # 3. write ~/.config/desk-break/config.env  (see Config reference in SKILL.md)
 # 4. register a launchd agent that runs ~/.local/bin/desk-break.sh on StartInterval
 #    (see the plist template in SKILL.md), then:

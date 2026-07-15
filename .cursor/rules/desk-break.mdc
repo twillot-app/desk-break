@@ -1,7 +1,7 @@
 ---
 description: How to work with the desk-break macOS movement-break reminder (launchd + shell + i18n)
 globs:
-  - "plugins/desk-break/**"
+  - "skills/**"
   - "**/desk-break.sh"
 alwaysApply: false
 ---
@@ -11,15 +11,15 @@ alwaysApply: false
 macOS-only movement-break reminder: a `launchd` agent runs a config-driven shell
 script on an interval, shows a localized reminder, optionally plays `music-cli`
 music, and tracks a streak. See `AGENTS.md` (repo root) for install/run details and
-`plugins/desk-break/skills/desk-break/SKILL.md` for the full config reference.
+`skills/health/desk-break/SKILL.md` for the full config reference.
 
 ## Rules when editing
 
 - **Single source of truth**: all logic lives in
-  `plugins/desk-break/skills/desk-break/reminder.sh`. Don't duplicate it; other
+  `skills/health/desk-break/reminder.sh`. Don't duplicate it; other
   entry points call it.
 - **i18n**: user-facing text, exercise cards, and copy live in
-  `plugins/desk-break/skills/desk-break/i18n/<lang>/{moves.txt,phrases.txt,strings.env}`.
+  `skills/health/desk-break/i18n/<lang>/{moves.txt,phrases.txt,strings.env}`.
   Add strings to `strings.env` (both `en` and `zh`), never hardcode UI text in the script.
 - **AppleScript**: pass text via `osascript ... on run argv` (UTF-8 safe). Never use
   env vars + `system attribute` (it garbles Chinese/emoji).

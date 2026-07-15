@@ -10,9 +10,9 @@
     {
       "name": "desk-break",
       "displayName": "Desk Break",
-      "source": "./plugins/desk-break",
+      "source": "./",
       "description": "macOS 'get up and move' break reminder: random exercise cards, workout music, persona/time-adaptive copy, night mode, and streak tracking. English + 中文.",
-      "category": "productivity",
+      "category": "health",
       "author": { "name": "twillot" },
       "homepage": "https://github.com/twillot-app/desk-break"
     }

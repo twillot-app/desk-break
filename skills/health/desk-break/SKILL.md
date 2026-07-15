@@ -7,7 +7,7 @@ allowed-tools:
   - Read
   - Write
 license: MIT
-version: 0.3.0
+version: 0.4.0
 ---
 
 # desk-break

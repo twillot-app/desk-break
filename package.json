@@ -1,0 +1,50 @@
+{
+  "name": "desk-break",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "macOS movement-break reminder: no-equipment exercises with animated demos by body part, body-part focus, workout music, streak tracking, persona/time-adaptive copy, escalating roast, night mode, and i18n (English + 中文). Installs a per-user launchd agent via `npx desk-break setup`.",
+  "bin": {
+    "desk-break": "bin/desk-break.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "os": [
+    "darwin"
+  ],
+  "keywords": [
+    "movement",
+    "break-reminder",
+    "exercise",
+    "stretch",
+    "health",
+    "posture",
+    "pomodoro",
+    "macos",
+    "launchd",
+    "productivity",
+    "claude-code",
+    "cli"
+  ],
+  "author": {
+    "name": "twillot",
+    "email": "twillot@outlook.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/twillot-app/desk-break#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twillot-app/desk-break.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twillot-app/desk-break/issues"
+  }
+}
