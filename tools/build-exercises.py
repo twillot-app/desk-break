@@ -13,7 +13,20 @@ TSV columns (tab-separated), one row per no-equipment exercise:
 """
 import json
 import os
+import re
 import sys
+
+# Some "body weight" exercises still need apparatus (a pull-up bar, bench, dip
+# station, rings, suspension straps, a box, a towel anchor, etc.). "body weight"
+# in the source data means "no added load", not "no equipment". Exclude anything
+# whose name implies gear beyond a wall/floor/desk.
+NEEDS_EQUIPMENT = re.compile(
+    r"strap|suspension|\btrx\b|\brings?\b|pull[\s-]?ups?|chin[\s-]?ups?|muscle[\s-]?ups?"
+    r"|\bbars?\b|parallel|parallette|\bbench|\bbox(?:es)?\b|step[\s-]?ups?|\bdips?\b"
+    r"|captain|roman chair|glute[\s-]?ham|\bghr\b|hyperextension|\bwheel|ab roller"
+    r"|\blever\b|\bflag\b|towel",
+    re.I,
+)
 
 # dataset body_part -> friendly focus group
 GROUP_OF = {
@@ -42,7 +55,10 @@ def main() -> int:
     out_base = os.path.join(here, "..", "plugins", "desk-break", "skills", "desk-break", "i18n")
 
     data = json.load(open(src, encoding="utf-8"))
-    bw = [x for x in data if x.get("equipment") == "body weight"]
+    bw = [
+        x for x in data
+        if x.get("equipment") == "body weight" and not NEEDS_EQUIPMENT.search(x.get("name", ""))
+    ]
 
     counts = {}
     rows = {lang: [] for lang in LANGS}
